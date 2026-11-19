@@ -2,8 +2,39 @@ import java.util.Arrays;
 
 public class Assignment01Q04 {
 
+    public static int[] shiftRight(int[] array) {
+        int last = array[array.length - 1];
+        for (int i = array.length - 1; i >= 1; i--) {
+            array[i] = array[i-1];
+        }
+        array[0] = last;
+
+        return array;
+    }
+
+    public static int[] shiftLeft(int[] array) {
+        int first = array[0];
+        for (int i = 0; i <= array.length - 2; i++) {
+            array[i] = array[i+1];
+        }
+        array[array.length - 1] = first;
+
+        return array;
+    }
+
     public static int[] shiftArrayCyclic(int[] array, int move, char direction) {
-        // TODO: implement
+        if (array.length == 0) return array;
+
+        if ((direction == 'R' && move > 0) || (direction == 'L' && move < 0)) {
+            for (int i = 0; i < Math.abs(move); i++) {
+                array = shiftRight(array);
+            }
+        }
+        else if ((direction == 'L' && move > 0) || (direction == 'R' && move < 0)) {
+            for (int i = 0; i < Math.abs(move); i++) {
+                array = shiftLeft(array);
+            }
+        }
         return array;
     }
 
